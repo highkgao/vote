@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven />
+    <context:component-scan base-package="com.highkgao.voteweb.home"/>
+
+    <context:component-scan base-package="com.highkgao.voteweb.business.controller"/>
+
+
+
+    <!-- view -->
+    <bean id="velocityConfig"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value ="/views"/>   <!-- 配置velocity页面路径 -->
+        <property name="velocityProperties">
+            <props>
+                <prop  key="input.encoding">utf-8</prop>
+                <prop  key="output.encoding">utf-8</prop>
+            </props>
+        </property>
+
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="layoutUrl" value="layout/layout.vm"/>
+        <property name="contentType"><value>text/html;charset=UTF-8</value></property>
+        <!-- 将请求字段放入velocity的末班中 -->
+        <property name="exposeRequestAttributes" value="true"/>
+        <!-- 将session字段放入velocity的末班中 -->
+        <property name="exposeSessionAttributes" value="true"/>
+    </bean>
+
+</beans>

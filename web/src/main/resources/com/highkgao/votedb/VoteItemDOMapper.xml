@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highkgao.votedb.VoteItemDOMapper" >
+  <resultMap id="BaseResultMap" type="com.highkgao.votedb.VoteItemDO" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vote_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="item_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pic_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="item_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="item_desc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="superiority" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="gmt_create" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="gmt_modified" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, vote_id, item_id, pic_url, item_name, item_desc, superiority, count, gmt_create, 
+    gmt_modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vote_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vote_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.highkgao.votedb.VoteItemDO" >
+    insert into vote_item (id, vote_id, item_id, 
+      pic_url, item_name, item_desc, 
+      superiority, count, gmt_create, 
+      gmt_modified)
+    values (#{id,jdbcType=INTEGER}, #{voteId,jdbcType=VARCHAR}, #{itemId,jdbcType=VARCHAR}, 
+      #{picUrl,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{itemDesc,jdbcType=VARCHAR}, 
+      #{superiority,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.highkgao.votedb.VoteItemDO" >
+    insert into vote_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="voteId != null" >
+        vote_id,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="itemDesc != null" >
+        item_desc,
+      </if>
+      <if test="superiority != null" >
+        superiority,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="voteId != null" >
+        #{voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDesc != null" >
+        #{itemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="superiority != null" >
+        #{superiority,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highkgao.votedb.VoteItemDO" >
+    update vote_item
+    <set >
+      <if test="voteId != null" >
+        vote_id = #{voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDesc != null" >
+        item_desc = #{itemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="superiority != null" >
+        superiority = #{superiority,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highkgao.votedb.VoteItemDO" >
+    update vote_item
+    set vote_id = #{voteId,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_desc = #{itemDesc,jdbcType=VARCHAR},
+      superiority = #{superiority,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

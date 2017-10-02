@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highkgao.votedb.VoteThemeDOMapper" >
+  <resultMap id="BaseResultMap" type="com.highkgao.votedb.VoteThemeDO" >
+    <constructor >
+      <idArg column="vote_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="theme" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="start_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="finish_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="participants_number" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="gmt_create" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="gmt_modified" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="vote_status" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    vote_id, user_id, theme, start_time, finish_time, participants_number, gmt_create, 
+    gmt_modified, vote_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vote_theme
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUserId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from vote_theme
+    where user_id = #{userId,jdbcType=VARCHAR}
+    <if test="keyword != null" >
+      AND theme LIKE concat(concat('%',#{keyword,jdbcType=VARCHAR}),'%')
+    </if>
+    ORDER BY gmt_create DESC
+    LIMIT #{offset} , #{limit}
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Integer" >
+    select
+    count(*)
+    from vote_theme
+    where user_id = #{userId,jdbcType=VARCHAR}
+    <if test="keyword != null" >
+      AND theme LIKE concat(concat('%',#{keyword,jdbcType=VARCHAR}),'%')
+    </if>
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vote_theme
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.highkgao.votedb.VoteThemeDO" >
+    insert into vote_theme (vote_id, user_id, theme, 
+      start_time, finish_time, participants_number, 
+      gmt_create, gmt_modified, vote_status
+      )
+    values (#{voteId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, #{participantsNumber,jdbcType=INTEGER}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{voteStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.highkgao.votedb.VoteThemeDO" >
+    insert into vote_theme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="voteId != null" >
+        vote_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="theme != null" >
+        theme,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="finishTime != null" >
+        finish_time,
+      </if>
+      <if test="participantsNumber != null" >
+        participants_number,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="voteStatus != null" >
+        vote_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="voteId != null" >
+        #{voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="participantsNumber != null" >
+        #{participantsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voteStatus != null" >
+        #{voteStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highkgao.votedb.VoteThemeDO" >
+    update vote_theme
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null" >
+        theme = #{theme,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null" >
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="participantsNumber != null" >
+        participants_number = #{participantsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voteStatus != null" >
+        vote_status = #{voteStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highkgao.votedb.VoteThemeDO" >
+    update vote_theme
+    set user_id = #{userId,jdbcType=VARCHAR},
+      theme = #{theme,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      participants_number = #{participantsNumber,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      vote_status = #{voteStatus,jdbcType=VARCHAR}
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </update>
+</mapper>

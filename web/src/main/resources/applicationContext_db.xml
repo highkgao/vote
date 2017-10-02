@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+        ">
+
+
+
+    <!--虚拟银行的电子现金充值数据源  -->
+    <bean id="jdbcVoteDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>org.gjt.mm.mysql.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:mysql://116.62.234.120:3306/vote?useUnicode=true&amp;characterEncoding=UTF-8
+            </value>
+        </property>
+        <property name="username">
+            <value>gaofeng</value>
+        </property>
+        <property name="password">
+            <value>GaoF123!@#</value>
+        </property>
+    </bean>
+
+    <!-- 事务管理 -->
+    <bean id="voteTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="jdbcVoteDataSource"/>
+    </bean>
+
+    <bean id="voteTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="voteTransactionManager"/>
+    </bean>
+
+    <bean id="sqlVoteSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="jdbcVoteDataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <!-- 用户信息 -->
+    <bean id="userInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.highkgao.votedb.UserInfoMapper"/>
+        <property name="sqlSessionFactory" ref="sqlVoteSessionFactory"/>
+    </bean>
+
+    <!-- 投票信息 -->
+    <bean id="voteThemeDOMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.highkgao.votedb.VoteThemeDOMapper"/>
+        <property name="sqlSessionFactory" ref="sqlVoteSessionFactory"/>
+    </bean>
+
+    <!-- 投票选项 -->
+    <bean id="voteItemDOMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.highkgao.votedb.VoteItemDOMapper"/>
+        <property name="sqlSessionFactory" ref="sqlVoteSessionFactory" />
+    </bean>
+
+
+
+
+</beans>

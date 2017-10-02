@@ -1,0 +1,57 @@
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h1>注册须知</h1>
+                    <span class="st-border"></span>
+                </div>
+            </div>
+            <div class="col-sm-4 contact-info">
+                <p class="contact-content">在填写资料后，请到填写的邮箱完成注册</p>
+                <p class="contact-content">有任何意见，请联系以下邮箱</p>
+                <p class="st-email"><i class="fa fa-envelope-o"></i> <strong>highkgao@126.com</strong></p>
+
+            </div>
+            <div class="col-sm-7 col-sm-offset-1">
+                <form action="registerSuccess.htm" id="register" class="contact-form" name="contact-form"
+                      method="post" onsubmit="register(this);">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="email" name="account" required="required" placeholder="请输注册邮箱">
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="text" name="name" required="required" placeholder="请输入名称">
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="password" name="password" required="required" placeholder="请输入密码">
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="password" name="conformPassword" required="required" placeholder="请确认密码" >
+                        </div>
+                        <input type="hidden" name="md5password" value=""/>
+                        <div class="col-sm-12">
+                            <input type="submit" name="submit" value="免费注册" class="btn btn-send">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    // 使用md5进行摘要
+    function register(form) {
+        if (form.password.value != form.conformPassword.value) {
+            alert("密码不匹配");
+            return false;
+        }
+
+        form.md5password.value = $.md5(form.password.value);
+        form.password.value = '';
+        form.conformPassword = '';
+    }
+</script>
+
+<!-- /CONTACT -->
