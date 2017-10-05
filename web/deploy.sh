@@ -7,7 +7,7 @@ echo "start package"
 mvn package
 echo "package end"
 echo "-------------------------"
-mv /Users/gaofeng/Documents/vote/web/target/voteweb.war ~/Downloads/apache-tomcat-9.0.0.M26/webapps/voteweb.war
+mv /Users/gaofeng/Documents/git/vote/web/target/voteweb.war ~/Downloads/apache-tomcat-9.0.0.M26/webapps/voteweb.war
 echo "---------------------------"
 sleep 3s
 /Users/gaofeng/Downloads/apache-tomcat-9.0.0.M26/bin/startup.sh

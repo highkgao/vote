@@ -46,5 +46,10 @@ public class WebContants {
      */
     public static final String IS_LOGIN = "isLogin";
 
+    /**
+     * 图片路径，用于异步上传的路径
+     */
+    public static final String IMAGE_PATH = "imagePath";
+
 
 }

@@ -60,7 +60,6 @@
                 <input type="button" class="btn-primary" onclick="submit();" value="提交投票">
             </div>
         </div>
-        <input type="file">
     </div>
 
     <script>
@@ -72,13 +71,17 @@
 
         function addItem() {
             var totleRol = $("#tableBody").find("tr").length;
-            var x = document.getElementById('tableBody').insertRow(totleRol);
+
+            // var x = document.getElementById('tableBody').insertRow(totleRol);
+            var x = document.createElement('tr');
+            ;
             x.className = "odd gradeX";
             x.appendChild(addTextItemTd('请输入名称'));
             x.appendChild(addTextItemTd('请输入选项描述'));
             x.appendChild(addTextItemTd('请输入选项优势'));
             x.appendChild(addPicControl());
-            x.appendChild(addButtonControl(totleRol));
+            x.appendChild(addButtonControl());
+            document.getElementById('tableBody').appendChild(x);
 
         };
 
@@ -95,7 +98,30 @@
         function addPicControl() {
             var tdElement = document.createElement('td');
             var inputElement = document.createElement('input');
-            inputElement.setAttribute('type', 'file');
+            inputElement.type = 'file';
+            inputElement.name = 'file';
+            inputElement.accept = 'image/x-png,image/jpeg';
+            inputElement.addEventListener('change', function () {
+                var file = this.files[0];
+                var formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    url: "../upload/itemImageAsync.upload",
+                    type: "POST",
+                    data : formData,
+                    dataType : "json",
+                    processData : false,
+                    contentType: false,
+                    success : function (data) {
+                        debugger;
+                        var imageElement = document.createElement('img');
+                        tdElement.removeChild(inputElement);
+                        imageElement.setAttribute('style','width:100px');
+                        imageElement.setAttribute('src','http://localhost:8080/voteweb/useImages/15071741838961039401.JPG');
+                        tdElement.appendChild(imageElement);
+                    }
+                });
+            });
             tdElement.appendChild(inputElement);
             return tdElement;
         }
