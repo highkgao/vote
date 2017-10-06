@@ -6,7 +6,6 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,11 +34,11 @@ public class UploadController {
             imageBuilder.append('/');
         }
 
-        imageBuilder.append("/useImages/");
+        imageBuilder.append("/userImages/");
         String imagePath = imageBuilder.toString();
         String origianlName = file.getOriginalFilename();
 
-        String suffix = StringUtils.substring(origianlName, origianlName.lastIndexOf('.'));
+        String suffix = StringUtils.substring(origianlName, origianlName.lastIndexOf('.')).toLowerCase();
 
         String fileName = GenerateUtil.generateUniqueId() + suffix;
 

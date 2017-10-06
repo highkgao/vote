@@ -2,7 +2,6 @@
     <!-- /.row -->
     <div class="row">
 
-
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">我发起的投票</div>
@@ -17,7 +16,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <div class="row">
+    <div class="row votediv-left">
         <label><a href="../user/addvote.htm">新的投票</a></label>
     </div>
     <!-- /.row -->

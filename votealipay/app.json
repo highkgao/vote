@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/todos/todos",    
+    "pages/add-todo/add-todo"
+  ],
+  "window": {
+    "defaultTitle": "Todo App"
+  },
+  "tabBar": {
+    "textColor": "#404040",
+    "selectedColor": "#108ee9",
+    "backgroundColor": "#F5F5F9",
+    "items": [
+      {
+        "pagePath": "pages/todos/todos",
+        "icon": "images/icon/home.png",
+        "activeIcon": "images/icon/home.png",
+        "name": "我的主页"
+      },
+      {
+        "pagePath": "pages/todos/todos",
+        "icon": "images/icon/agree.png",
+        "activeIcon": "images/icon/agree.png",
+        "name": "我的参与"
+      },
+      {
+        "pagePath": "pages/todos/todos",
+        "icon": "images/icon/vote.png",
+        "activeIcon": "images/icon/vote.png",
+        "name": "我的投票"
+      }
+    ]
+  }
+}

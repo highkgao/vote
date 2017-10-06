@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="../css/sb-admin.min.css"/>
         <link rel="stylesheet" href="../datetimepick/bootstrap-datetimepicker.min.css"/>
         <link rel="stylesheet" href="../bootstrap-table/bootstrap-table.css"/>
+        <link rel="stylesheet" href="../votecss/votecss.css">
 
 
         <script type="text/javascript" src="../js/jquery.min.js"></script><!-- jQuery -->
