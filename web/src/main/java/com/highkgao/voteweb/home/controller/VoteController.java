@@ -2,6 +2,7 @@ package com.highkgao.voteweb.home.controller;
 
 import com.highkgao.votedb.UserInfo;
 import com.highkgao.votedb.UserInfoMapper;
+import com.highkgao.voteservice.UserService;
 import com.highkgao.voteweb.base.BaseController;
 import com.highkgao.voteweb.contants.SessionContants;
 import org.slf4j.Logger;
@@ -29,8 +30,11 @@ public class VoteController extends BaseController {
 
     private static Logger LOGGER = LoggerFactory.getLogger(VoteController.class);
 
+    /**
+     * 用户服务
+     */
     @Resource
-    private UserInfoMapper userInfoMapper;
+    private UserService userService;
 
 
     /**
@@ -52,16 +56,7 @@ public class VoteController extends BaseController {
 
     @RequestMapping(value = "registerSuccess.htm")
     public String registerSuccess(String account, String name, String md5password, HttpSession httpSession) {
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUserName(name);
-        userInfo.setGmtCreate(new Date());
-        userInfo.setGmtModified(new Date());
-        userInfo.setPassword(md5password);
-        userInfo.setStatus("Valid");
-        userInfo.setUserId(generatorUserNo());
-        userInfo.setEmail(account);
-        userInfo.setLogonId(account);
-        userInfoMapper.insert(userInfo);
+        UserInfo userInfo = userService.registerUser(account, name, md5password);
         httpSession.setAttribute(SessionContants.LOGON_ID, account);
         httpSession.setAttribute(SessionContants.IS_LOGIN, true);
         httpSession.setAttribute(SessionContants.LOGON_NAME, name);
@@ -92,9 +87,4 @@ public class VoteController extends BaseController {
     }
 
 
-    private String generatorUserNo() {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMDDhhmmss");
-        return sdf.format(calendar.getTime());
-    }
 }

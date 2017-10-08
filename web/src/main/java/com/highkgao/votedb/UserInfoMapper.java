@@ -1,6 +1,6 @@
 package com.highkgao.votedb;
 
-import com.highkgao.votedb.UserInfo;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Long id);
@@ -16,4 +16,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKey(UserInfo record);
 
     UserInfo selectByLogonId(String logonId);
+
+    UserInfo selectByUserId(@Param("userId") String userId);
 }

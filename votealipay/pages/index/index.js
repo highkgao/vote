@@ -3,10 +3,11 @@ const app = getApp();
 Page({
   data: {},
   onLoad() {
-    if (userInfo == null) {
-      
-    }
-   
+    app.getUserInfo().then(
+      user => this.setData({
+        user,
+      }),
+    );
   },
   onShow() {
     this.setData({ todos: app.todos });
@@ -21,5 +22,13 @@ Page({
   },
   addTodo() {
     my.navigateTo({ url: '../add-todo/add-todo' });
+  },
+  queryVote() {
+    my.alert({
+      title: inputValue, // alert 框的标题
+      success: (res) => {
+        
+      },
+    });
   },
 });

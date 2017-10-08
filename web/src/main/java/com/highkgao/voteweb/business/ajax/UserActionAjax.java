@@ -1,8 +1,10 @@
 package com.highkgao.voteweb.business.ajax;
 
 import com.highkgao.voteCommon.ResultCode;
+import com.highkgao.votedb.UserInfo;
 import com.highkgao.votedb.VoteItemDO;
 import com.highkgao.votedb.VoteThemeDO;
+import com.highkgao.voteservice.UserService;
 import com.highkgao.voteservice.VoteService;
 import com.highkgao.voteweb.base.BaseAjax;
 import com.highkgao.voteweb.business.form.AddVoteForm;
@@ -34,6 +36,9 @@ public class UserActionAjax extends BaseAjax {
     @Resource
     private VoteService voteService;
 
+    @Resource
+    private UserService userService;
+
     // 增加主题
     @RequestMapping(value = "addvote.json", method = {RequestMethod.POST})
     public void addVote(HttpSession session, ModelMap modelMap, @RequestBody AddVoteForm addVoteForm) {
@@ -49,8 +54,21 @@ public class UserActionAjax extends BaseAjax {
         }
         voteService.addVote(voteThemeDO, voteItemDOList);
         fillSuccess(modelMap);
-
     }
+
+    /**
+     * 支付宝登录授权并查询用户信息
+     * @param modelMap
+     * @param authCode
+     */
+    @RequestMapping(value = "alipayUserAuthorize.json", method = {RequestMethod.POST, RequestMethod.GET})
+    public void alipayUserAuthorize(ModelMap modelMap, String authCode) {
+        LOGGER.info("支付宝用户授权请求 authCode = {}", authCode);
+        UserInfo userInfo = userService.alipayUserAuthorize(authCode);
+        fillSuccess(modelMap,userInfo);
+    }
+
+
 
     private VoteThemeDO generateVoteThemeDO(AddVoteForm addVoteForm, String userId) {
         VoteThemeDO voteThemeDO = new VoteThemeDO();

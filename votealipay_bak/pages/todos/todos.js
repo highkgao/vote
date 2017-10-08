@@ -3,10 +3,11 @@ const app = getApp();
 Page({
   data: {},
   onLoad() {
-    if (userInfo == null) {
-      
-    }
-   
+    app.getUserInfo().then(
+      user => this.setData({
+        user,
+      }),
+    );
   },
   onShow() {
     this.setData({ todos: app.todos });

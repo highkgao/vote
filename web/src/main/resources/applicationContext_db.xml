@@ -63,6 +63,12 @@
         <property name="sqlSessionFactory" ref="sqlVoteSessionFactory" />
     </bean>
 
+    <!-- 第三方公司的登录数据-->
+    <bean id="thirdUserInfoDOMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.highkgao.votedb.ThirdUserInfoDOMapper"/>
+        <property name="sqlSessionFactory" ref="sqlVoteSessionFactory" />
+    </bean>
+
 
 
 

@@ -67,7 +67,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="vote_theme" domainObjectName="VoteThemeDO"
+        <table tableName="third_user_info" domainObjectName="ThirdUserInfoDO"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

@@ -1,23 +1,29 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/todos/todos",    
     "pages/add-todo/add-todo"
   ],
   "window": {
-    "defaultTitle": "爱投票"
+    "enableWK": "YES",
+    "enableDSL": true,
+    "defaultTitle": "爱投票",
+    "backgroundColor": "#F5F5F9",
+    "pullRefresh": false,
+    "allowsBounceVertical": true
   },
-  "tabBar" : {
+  "tabBar": {
     "textColor": "#404040",
+    "selectedColor": "#108ee9",
+    "backgroundColor": "#F5F5F9",
     "items": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/todos/todos",
         "icon": "images/icon/home.png",
         "activeIcon": "images/icon/home.png",
         "name": "我的主页"
       },
       {
-        "pagePath": "pages/add-todo/add-todo",
+        "pagePath": "pages/todos/todos",
         "icon": "images/icon/agree.png",
         "activeIcon": "images/icon/agree.png",
         "name": "我的参与"
@@ -29,5 +35,6 @@
         "name": "我的投票"
       }
     ]
-  }
+  },
+  "debug": true
 }

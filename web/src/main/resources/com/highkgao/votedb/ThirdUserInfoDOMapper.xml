@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.highkgao.votedb.ThirdUserInfoDOMapper" >
+  <resultMap id="BaseResultMap" type="com.highkgao.votedb.ThirdUserInfoDO" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_id_third" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id_channel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="relation_owner_user_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nike_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="avatar" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="province" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gender" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_certified" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id_third, user_id_channel, relation_owner_user_id, nike_name, avatar, province, 
+    city, gender, is_certified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from third_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUserIdAndChannel" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from third_user_info
+    where user_id_third = #{userId,jdbcType=VARCHAR} AND user_id_channel = #{channel,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from third_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.highkgao.votedb.ThirdUserInfoDO" >
+    insert into third_user_info (id, user_id_third, user_id_channel, 
+      relation_owner_user_id, nike_name, avatar, 
+      province, city, gender, 
+      is_certified)
+    values (#{id,jdbcType=INTEGER}, #{userIdThird,jdbcType=VARCHAR}, #{userIdChannel,jdbcType=VARCHAR}, 
+      #{relationOwnerUserId,jdbcType=VARCHAR}, #{nikeName,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{isCertified,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.highkgao.votedb.ThirdUserInfoDO" >
+    insert into third_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userIdThird != null" >
+        user_id_third,
+      </if>
+      <if test="userIdChannel != null" >
+        user_id_channel,
+      </if>
+      <if test="relationOwnerUserId != null" >
+        relation_owner_user_id,
+      </if>
+      <if test="nikeName != null" >
+        nike_name,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="isCertified != null" >
+        is_certified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userIdThird != null" >
+        #{userIdThird,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdChannel != null" >
+        #{userIdChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="relationOwnerUserId != null" >
+        #{relationOwnerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="nikeName != null" >
+        #{nikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="isCertified != null" >
+        #{isCertified,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.highkgao.votedb.ThirdUserInfoDO" >
+    update third_user_info
+    <set >
+      <if test="userIdThird != null" >
+        user_id_third = #{userIdThird,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdChannel != null" >
+        user_id_channel = #{userIdChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="relationOwnerUserId != null" >
+        relation_owner_user_id = #{relationOwnerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="nikeName != null" >
+        nike_name = #{nikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="isCertified != null" >
+        is_certified = #{isCertified,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.highkgao.votedb.ThirdUserInfoDO" >
+    update third_user_info
+    set user_id_third = #{userIdThird,jdbcType=VARCHAR},
+      user_id_channel = #{userIdChannel,jdbcType=VARCHAR},
+      relation_owner_user_id = #{relationOwnerUserId,jdbcType=VARCHAR},
+      nike_name = #{nikeName,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      is_certified = #{isCertified,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

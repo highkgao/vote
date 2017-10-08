@@ -4,10 +4,8 @@ import com.highkgao.votedb.VoteItemDO;
 import com.highkgao.votedb.VoteItemDOMapper;
 import com.highkgao.votedb.VoteThemeDO;
 import com.highkgao.votedb.VoteThemeDOMapper;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -15,7 +13,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service
+
 public class VoteServiceImpl implements VoteService {
     /**
      * LOGGER

@@ -7,5 +7,6 @@
         <mapper resource="com/highkgao/votedb/UserInfoMapper.xml"/>
         <mapper resource="com/highkgao/votedb/VoteThemeDOMapper.xml"/>
         <mapper resource="com/highkgao/votedb/VoteItemDOMapper.xml"/>
+        <mapper resource="com/highkgao/votedb/ThirdUserInfoDOMapper.xml"/>
     </mappers>
 </configuration>

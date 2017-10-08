@@ -1,0 +1,32 @@
+
+.user {
+  display: flex;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+  justify-content: center;
+}
+
+
+.add-todo {
+  height: 5rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.add-todo-input {
+  font-size: 20px;
+  padding: 10px;
+}
+
+.btn-search{
+  height: 5rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  font-size: 20rpx;
+}
+
