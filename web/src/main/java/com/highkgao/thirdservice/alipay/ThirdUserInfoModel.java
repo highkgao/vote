@@ -14,7 +14,7 @@ public class ThirdUserInfoModel {
     private String relationOwnerUserId;
 
     /** 第三方的昵称 */
-    private String nikeName;
+    private String nikeName;  
 
     /** 第三方的用户头像 */
     private String avatar;
