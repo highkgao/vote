@@ -179,7 +179,6 @@
             var endTime = $('#endDateTime').val();
             var items = [];
             $('#tableBody').find('tr').each(function () {
-                debugger;
                 var tdArr = $(this).children();
                 var itemName = tdArr.eq(0).find("input").val();//选项名称
                 var itemDesc = tdArr.eq(1).find("input").val();//选项描述

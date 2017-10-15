@@ -35,7 +35,7 @@
         <property name="defaultViews">
             <list>
                 <!-- ModelAndView里的数据变成JSON -->
-                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
             </list>
         </property>
     </bean>

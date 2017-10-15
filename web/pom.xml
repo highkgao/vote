@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>3.2.8.RELEASE</spring.version>
+        <spring.version>4.2.1.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -170,6 +170,25 @@
             <groupId>com.alipay</groupId>
             <artifactId>alipaysdk</artifactId>
             <version>0.0.9</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.1.0.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.2.1.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.0.6.RELEASE</version>
         </dependency>
 
     </dependencies>
