@@ -4,7 +4,22 @@ App({
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    wx.setStorageSync('logs', logs);
+    wx.login({
+      success:(res) => {
+        console.log(res.code)
+        wx.request({
+          url: "https://www.lovetoupiao.com/voteweb/user/wechatUserAuthorize.json",
+          data:{
+            code:res.code
+          },
+          success:(res) => {
+            console.log(res)
+          }
+        })
+      }
+
+    })
   },
 
   getUserInfo: function(cb) {

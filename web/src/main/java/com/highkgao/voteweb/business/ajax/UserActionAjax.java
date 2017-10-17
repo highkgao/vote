@@ -58,6 +58,7 @@ public class UserActionAjax extends BaseAjax {
 
     /**
      * 支付宝登录授权并查询用户信息
+     *
      * @param modelMap
      * @param authCode
      */
@@ -65,9 +66,16 @@ public class UserActionAjax extends BaseAjax {
     public void alipayUserAuthorize(ModelMap modelMap, String authCode) {
         LOGGER.info("支付宝用户授权请求 authCode = {}", authCode);
         UserInfo userInfo = userService.alipayUserAuthorize(authCode);
-        fillSuccess(modelMap,userInfo);
+        fillSuccess(modelMap, userInfo);
     }
 
+    @RequestMapping(value = "wechatUserAuthorize.json", method = {RequestMethod.POST, RequestMethod.GET})
+    public void wechatUserAuthorize(ModelMap modelMap, String code) {
+        LOGGER.info("微信用户授权请求 code ={}", code);
+
+        fillSuccess(modelMap);
+
+    }
 
 
     private VoteThemeDO generateVoteThemeDO(AddVoteForm addVoteForm, String userId) {
